@@ -1,0 +1,72 @@
+package com.kbapartments;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args){
+
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("This is a calculator for any two integers:\n");
+
+        int no_of_cals=0;
+
+       while (no_of_cals<1000) {
+
+           String input = scanner.nextLine();
+           String[] parts = input.split("\\+");
+           char operand = '+';
+
+           if (input.contains("+")) {
+               operand = '+';
+               parts = input.split("\\+");
+           } else if (input.contains("-")) {
+               operand = '-';
+               parts = input.split("\\-");
+           } else if (input.contains("X")) {
+               operand = '*';
+               parts = input.split("\\X");
+           } else if (input.contains("*")) {
+               operand = '*';
+               parts = input.split("\\*");
+           } else if (input.contains("/")) {
+               operand = '/';
+               parts = input.split("\\/");
+           }
+
+
+           String num1String = parts[0];
+           String num2String = parts[1];
+
+           //Convert the strings to numbers
+           int num1 = Integer.parseInt(num1String);
+           int num2 = Integer.parseInt(num2String);
+           int result = 0;
+
+           switch (operand) {
+               case '+':
+                   result = num1 + num2;
+                   break;
+               case '-':
+                   result = num1 - num2;
+                   break;
+               case '*':
+                   result = num1 * num2;
+                   break;
+               case 'X':
+                   result = num1 * num2;
+                   break;
+               case '/':
+                   result = num1 / num2;
+                   break;
+
+               default:
+                   System.out.println("Error: Invalid operand.");
+                   return;
+           }
+           System.out.println("Answer: " + result);
+
+           no_of_cals ++;
+       }
+
+    }
+}
