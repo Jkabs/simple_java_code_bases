@@ -3,70 +3,88 @@ package com.kbapartments;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args){
 
-        Scanner scanner=new Scanner(System.in);
-        System.out.println("This is a calculator for any two integers:\n");
+    public static void main(String[] args) {
+        Scanner scanner= new Scanner(System.in);
+        Integer int1=0;
+        Integer int2=0;
+        String stringInt1="";
+        String stringInt2="";
+        Integer noOfCalculations=0;
+        int result=0;
+;
 
-        int no_of_cals=0;
-
-       while (no_of_cals<1000) {
-
-           String input = scanner.nextLine();
-           String[] parts = input.split("\\+");
-           char operand = '+';
-
-           if (input.contains("+")) {
-               operand = '+';
-               parts = input.split("\\+");
-           } else if (input.contains("-")) {
-               operand = '-';
-               parts = input.split("\\-");
-           } else if (input.contains("X")) {
-               operand = '*';
-               parts = input.split("\\X");
-           } else if (input.contains("*")) {
-               operand = '*';
-               parts = input.split("\\*");
-           } else if (input.contains("/")) {
-               operand = '/';
-               parts = input.split("\\/");
-           }
+        System.out.println("This is a calculator of two integers:\nIt performs addition, " +
+                "subtraction,division and multiplication.\n");
 
 
-           String num1String = parts[0];
-           String num2String = parts[1];
 
-           //Convert the strings to numbers
-           int num1 = Integer.parseInt(num1String);
-           int num2 = Integer.parseInt(num2String);
-           int result = 0;
+        while(noOfCalculations<1000){
+                String input= scanner.nextLine();
+                String[] parts= input.split("\\+");
+                Character operand='+';
 
-           switch (operand) {
-               case '+':
-                   result = num1 + num2;
-                   break;
-               case '-':
-                   result = num1 - num2;
-                   break;
-               case '*':
-                   result = num1 * num2;
-                   break;
-               case 'X':
-                   result = num1 * num2;
-                   break;
-               case '/':
-                   result = num1 / num2;
-                   break;
+            if (input.contains("+")) {
+                parts=input.split("\\+");
+                operand='+';
 
-               default:
-                   System.out.println("Error: Invalid operand.");
-                   return;
-           }
-           System.out.println("Answer: " + result);
+                } else if (input.contains("-")) {
+                parts=input.split("\\-");
+                operand='-';
 
-           no_of_cals ++;
-       }
+            } else if (input.contains("*")) {
+                parts= input.split("\\*");
+                operand='*';
+
+            } else if (input.contains("/")) {
+                parts=input.split("\\/");
+                operand='/';
+
+            }else {
+                // Handle invalid input here, if necessary
+                System.out.println("Invalid input: " + input);
+                continue; // Skip the rest of the loop for this iteration
+            }
+
+
+
+            stringInt1=parts[0];
+            stringInt2=parts[1];
+            int1=Integer.parseInt(stringInt1);
+            int2=Integer.parseInt(stringInt2);
+            result=0;
+
+            switch (operand){
+
+                case '+':
+                    result=int1+int2;
+                    break;
+
+                case '-':
+                    result=int1-int2;
+                    break;
+
+                case '*':
+                    result=int1*int2;
+                    break;
+                case '/':
+                    if (int2>0) {
+                        result = int1 / int2;
+                    } else {
+                        result=0;
+                        System.out.println("Division by zero no allowed.\n");
+                    }
+                    break;
+                default:
+                    System.out.println("Error: Invalid operand.");
+                    return;
+
+            }
+
+            System.out.println("result: " + result);
+        }
+
+
 
     }
 }
